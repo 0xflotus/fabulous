@@ -11,13 +11,17 @@ Fabulous supports the followings
 - 💅 CSS-in-JS libs which supports template literal ([styled-components](https://github.com/styled-components/styled-components), [emotion](https://github.com/emotion-js/emotion), [linaria](https://github.com/callstack/linaria))
 - 🎨 CSS rules from `.css` files
 - 🌈 CSS rules from `.scss` files
+- 🌏 CSS rules from `.html` files - these must be in a `<style>` tag and the style tag must be within the `<head>` tag
+- 🌛 CSS rules from `component.ts` Angular component files that have inline styles within the ` @Component({ styles:[``] }) ` decorator
+- 🌟 CSS rules from `.vue` files that have a `<style>` tag in the root of the file
+- 💍 CSS rules from `.svelte` files that have a `<style>` tag in the root of the file
 
 > Fabulous is still in Preview. Give it a try and [let us know](https://github.com/Raathigesh/fabulous/issues) when things don't go well.
 
 ## Getting started
 
 - Install the [Fabulous](https://marketplace.visualstudio.com/items?itemName=Raathigeshan.fabulous) extension in VS Code
-- After opening a `css`, `scss`, `js`, `jsx` or `tsx` file, click on the <img src="https://affectionate-booth-10a1f4.netlify.com/tiny-icon.png" width="20px" /> icon to toggle the side-bar
+- After opening a `css`, `scss`, `js`, `jsx`, `tsx`, `component.ts`, `vue` or `svelte` file, click on the <img src="https://affectionate-booth-10a1f4.netlify.com/tiny-icon.png" width="20px" /> icon to toggle the side-bar
 - Place your cursor in a CSS rule or in a Styled component template literal
 - You should see the sidebar controls become active
 
@@ -31,7 +35,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-<table><tr><td align="center"><a href="https://github.com/threepointone"><img src="https://avatars2.githubusercontent.com/u/18808?v=4" width="100px;" alt="Sunil Pai"/><br /><sub><b>Sunil Pai</b></sub></a><br /><a href="#ideas-threepointone" title="Ideas, Planning, & Feedback">🤔</a></td><td align="center"><a href="https://twitter.com/Raathigesh"><img src="https://avatars0.githubusercontent.com/u/3108160?v=4" width="100px;" alt="Raathi Kugarajan"/><br /><sub><b>Raathi Kugarajan</b></sub></a><br /><a href="#ideas-Raathigesh" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Raathigesh/fabulous/commits?author=Raathigesh" title="Code">💻</a> <a href="#design-Raathigesh" title="Design">🎨</a></td></tr></table>
+<table><tr><td align="center"><a href="https://github.com/threepointone"><img src="https://avatars2.githubusercontent.com/u/18808?v=4" width="100px;" alt="Sunil Pai"/><br /><sub><b>Sunil Pai</b></sub></a><br /><a href="#ideas-threepointone" title="Ideas, Planning, & Feedback">🤔</a></td><td align="center"><a href="https://twitter.com/Raathigesh"><img src="https://avatars0.githubusercontent.com/u/3108160?v=4" width="100px;" alt="Raathi Kugarajan"/><br /><sub><b>Raathi Kugarajan</b></sub></a><br /><a href="#ideas-Raathigesh" title="Ideas, Planning, & Feedback">🤔</a> <a href="https://github.com/Raathigesh/fabulous/commits?author=Raathigesh" title="Code">💻</a> <a href="#design-Raathigesh" title="Design">🎨</a></td><td align="center"><a href="https://github.com/0xflotus"><img src="https://avatars3.githubusercontent.com/u/26602940?v=4" width="100px;" alt="0xflotus"/><br /><sub><b>0xflotus</b></sub></a><br /><a href="https://github.com/Raathigesh/fabulous/commits?author=0xflotus" title="Documentation">📖</a></td><td align="center"><a href="https://github.com/paustint"><img src="https://avatars2.githubusercontent.com/u/5461649?v=4" width="100px;" alt="Austin Turner"/><br /><sub><b>Austin Turner</b></sub></a><br /><a href="https://github.com/Raathigesh/fabulous/commits?author=paustint" title="Tests">⚠️</a> <a href="https://github.com/Raathigesh/fabulous/commits?author=paustint" title="Code">💻</a> <a href="#maintenance-paustint" title="Maintenance">🚧</a> <a href="https://github.com/Raathigesh/fabulous/issues?q=author%3Apaustint" title="Bug reports">🐛</a> <a href="https://github.com/Raathigesh/fabulous/commits?author=paustint" title="Documentation">📖</a> <a href="#infra-paustint" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#review-paustint" title="Reviewed Pull Requests">👀</a></td><td align="center"><a href="https://twitter.com/igrekov"><img src="https://avatars0.githubusercontent.com/u/13730032?v=4" width="100px;" alt="Ivan"/><br /><sub><b>Ivan</b></sub></a><br /><a href="https://github.com/Raathigesh/fabulous/commits?author=Winner95" title="Code">💻</a></td></tr></table>
 
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 

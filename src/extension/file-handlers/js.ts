@@ -1,60 +1,43 @@
-import traverse from "@babel/traverse";
-import { parse } from "../parsers/babel";
-import {
-  updateProperty,
-  getDeclarations,
-  getRules,
-  removeProperty
-} from "./utils";
-import { FileHandler, EditableBlock } from "./types";
-import { NodeSource } from "postcss";
-
-interface StyleExpresions {
-  name: string;
-  cssString: string;
-  location: NodeSource;
-}
+import traverse from '@babel/traverse';
+import { parse } from '../parsers/babel';
+import { updateProperty, getDeclarations, getRules, removeProperty } from './utils';
+import { FileHandler, EditableBlock, StyleExpressions, SupportedFiletypes } from './types';
 
 function wrapWithDummySelector(declaraions: string) {
   return `.dummy{${declaraions}}`;
 }
 
 export function getTaggedTemplateExpressionStrings(ast: any) {
-  const results: StyleExpresions[] = [];
+  const results: StyleExpressions[] = [];
   traverse(ast, {
     TaggedTemplateExpression(path: any) {
       const cssString = path.node.quasi.quasis[0].value.raw;
       const location = path.node.quasi.loc;
 
       results.push({
-        name: path.parent.id.name,
+        name: (path.parent.id && path.parent.id.name) || '',
         cssString: wrapWithDummySelector(cssString),
         location: {
           start: {
             column: (location.start && location.start.column) || 0,
-            line: (location.start && location.start.line - 1) || 0
+            line: (location.start && location.start.line - 1) || 0,
           },
           end: {
             column: (location.end && location.end.column) || 0,
-            line: (location.end && location.end.line - 1) || 0
+            line: (location.end && location.end.line - 1) || 0,
           },
-          input: path.node.quasi.loc.input
-        }
+          input: path.node.quasi.loc.input,
+        },
       });
-    }
+    },
   });
   return results;
 }
 
-export function updateCSSProperty(
-  content: string,
-  name: string,
-  property: string,
-  value: string,
-  languageId: string
-) {
+// FIXME: IS THIS USED? NO REFERENCE IN CODEBASE, WE SHOULD REMOVE THIS
+export function updateCSSProperty(content: string, name: string, property: string, value: string, languageId: SupportedFiletypes) {
   const ast = parse(content, languageId);
-  let updatedCssString = "";
+  let updatedCssString = '';
 
   traverse(ast, {
     TaggedTemplateExpression(path: any) {
@@ -63,11 +46,11 @@ export function updateCSSProperty(
         updatedCssString = updateProperty(cssString, property, value);
         path.node.quasi.quasis[0].value.raw = updatedCssString;
       }
-    }
+    },
   });
 }
 
-export function getEditableBlocks(content: string, languageId: string) {
+export function getEditableBlocks(content: string, languageId: SupportedFiletypes) {
   const ast = parse(content, languageId);
   const styledBlocks = getTaggedTemplateExpressionStrings(ast);
 
@@ -80,7 +63,7 @@ export function getEditableBlocks(content: string, languageId: string) {
         selector: rule.selector,
         declarations,
         source: location,
-        rule
+        rule,
       });
     });
   });
@@ -88,7 +71,7 @@ export function getEditableBlocks(content: string, languageId: string) {
 }
 
 const StyledComponentsInspector: FileHandler = {
-  getEdiableBlocks(fileContent: string, languageId: string) {
+  getEditableBlocks(fileContent: string, languageId: SupportedFiletypes) {
     return getEditableBlocks(fileContent, languageId);
   },
   updateProperty(activeBlock: EditableBlock, prop: string, value: string) {
@@ -104,6 +87,6 @@ const StyledComponentsInspector: FileHandler = {
     updatedCSS = updatedCSS.substr(0, updatedCSS.length - 1); // removes }
     updatedCSS = `\`${updatedCSS}\``; // ads the `` back
     return updatedCSS;
-  }
+  },
 };
 export default StyledComponentsInspector;
